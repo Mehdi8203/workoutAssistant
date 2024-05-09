@@ -1,0 +1,291 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    plan
+{% endblock %}
+
+{% block main %}
+<style>
+h1 {
+  /* plan.html css*/
+  position: absolute;
+  top: 300px;
+  text-align: center;
+  color:white;
+}
+#h1chest {
+  left: 50px;
+}
+
+/* Style the multiselect boxes */
+.multiselect {
+  position: absolute;
+  display: inline-block;
+}
+
+#multiselect1{
+  left: 30px;
+  top: 180px;
+  width: 270px;
+}
+
+#multiselect2{
+  left: 450px;
+  top: 180px;
+  width: 320px;
+}
+
+#multiselect3{
+  left: 810px;
+  top: 180px;
+  width: 450px;
+}
+
+#multiselect4{
+  left: 30px;
+  top: 460px;
+  width: 390px;
+}
+
+#multiselect5{
+  left: 450px;
+  top: 460px;
+  width: 330px;
+}
+
+#multiselect6{
+  left: 810px;
+  top: 460px;
+  width: 360px;
+}
+
+/* Style the label to look like a button */
+.selectBox {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  height: 50px;
+  width: 150px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: #f7f7f7;
+  color: #555;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: all 0.5s;
+}
+
+/* Hide the default select box */
+.selectBox select {
+  display: none;
+}
+
+/* Style the options */
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Style the selected items */
+.selected {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  display: inline-block;
+  background-color: #f7f7f7;
+  color: #555;
+}
+
+/* Style the dropdown */
+.dropdown {
+  position: absolute;
+  z-index: 1;
+  background-color: #FFF;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  padding: 5px;
+  overflow-y: scroll;
+  max-height: 200px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+/* Style the options in the dropdown */
+.dropdown #option1 {
+  padding: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f7f7f7;
+  color: #555;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: all 0.5s;
+}
+
+h1, h2 {
+      position: absolute;
+      text-align: center;
+      color:white;
+    }
+    #h1top {
+        font-size: 3em;
+        top: -5px;
+        left: 550px
+    }
+    #h2top1 {
+        font-size: 1.8em;
+        top: 75px;
+        left: 475px;
+        color: #FFC300;
+        opacity: 90%;
+    }
+    #h2top2 {
+        font-size: 1.8em;
+        top: 115px;
+        left: 460px;
+        color: #FFC300;
+        opacity: 90%;
+    }
+
+  #submit_training {
+  position: absolute;
+  left: 1320px;
+  top: 480px;
+  background-color: #FFC300;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+</style>
+
+<h1 id="h1top">Workout assistant</h1>
+<h2 id="h2top1">Select a body part, choose the exercises</h2>
+<h2 id="h2top2">you want, and then click the submit button</h2>
+
+<form action="/plan" method="post">
+
+{% set days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
+
+<select name="days" value="days" class="selectday" style="width: 200px; position: absolute; left: 1250px; top: 180px;">
+  <option disabled selected>Day</option>
+  {% for day in days %}
+      <option value="{{day}}" id="{{day}}" name="{{day}}" >{{day}}</option>
+      <br>
+  {% endfor %}
+</select>
+
+<div class="multiselect" id="multiselect1">
+  <div class="selectBox" onclick="showCheckboxes('chest')">
+    <div class="overSelect"><h3 style="font-size: 2em; position: absolute; left: 20px;">Chest</h3></div>
+    <select>
+      <option id="option1">Select an option</option>
+    </select>
+  </div>
+  <div id="chest" class="dropdown">
+    {% for row in chest %}
+        <label for="{{row.ename}}"><input value="{{row.ename}}" type="checkbox" id="chest_{{row.ename}}" name="{{row.id}}" />{{ row.ename|replace('_', ' ') }}</label>
+        <br>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="multiselect" id="multiselect2">
+  <div class="selectBox" onclick="showCheckboxes('bicep')">
+    <div class="overSelect"><h3 style="font-size: 2em; position: absolute; left: 20px;">Bicep</h3></div>
+    <select>
+      <option id="option2">Select an option</option>
+    </select>
+  </div>
+  <div id="bicep" class="dropdown">
+    {% for row in bicep %}
+        <label for="{{row.ename}}"><input value="{{row.ename}}" type="checkbox" id="chest_{{row.ename}}" name="{{row.id}}" />{{ row.ename|replace('_', ' ') }}</label>
+        <br>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="multiselect" id="multiselect3">
+  <div class="selectBox" onclick="showCheckboxes('tricep')">
+    <div class="overSelect"><h3 style="font-size: 2em; position: absolute; left: 20px;">Tricep</h3></div>
+    <select>
+      <option id="option3">Select an option</option>
+    </select>
+  </div>
+  <div id="tricep" class="dropdown">
+    {% for row in tricep %}
+        <label for="{{row.ename}}"><input value="{{row.ename}}" type="checkbox" id="chest_{{row.ename}}" name="{{row.id}}" />{{ row.ename|replace('_', ' ') }}</label>
+        <br>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="multiselect" id="multiselect4">
+  <div class="selectBox" onclick="showCheckboxes('back')">
+    <div class="overSelect"><h3 style="font-size: 2em; position: absolute; left: 20px;">Back</h3></div>
+    <select>
+      <option id="option4">Select an option</option>
+    </select>
+  </div>
+  <div id="back" class="dropdown">
+    {% for row in back %}
+        <label for="{{row.ename}}"><input value="{{row.ename}}" type="checkbox" id="chest_{{row.ename}}" name="{{row.id}}" />{{ row.ename|replace('_', ' ') }}</label>
+        <br>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="multiselect" id="multiselect5">
+  <div class="selectBox" onclick="showCheckboxes('leg')">
+    <div class="overSelect"><h3 style="font-size: 2em; position: absolute; left: 20px;">Leg</h3></div>
+    <select>
+      <option id="option5">Select an option</option>
+    </select>
+  </div>
+  <div id="leg" class="dropdown">
+    {% for row in leg %}
+        <label for="{{row.ename}}"><input value="{{row.ename}}" type="checkbox" id="chest_{{row.ename}}" name="{{row.id}}" />{{ row.ename|replace('_', ' ') }}</label>
+        <br>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="multiselect" id="multiselect6">
+  <div class="selectBox" onclick="showCheckboxes('Abs')">
+    <div class="overSelect"><h3 style="font-size: 2em; position: absolute; left: 20px;">Abs</h3></div>
+    <select>
+      <option id="option6">Select an option</option>
+    </select>
+  </div>
+  <div id="Abs" class="dropdown">
+    {% for row in Abs %}
+        <label for="{{row.ename}}"><input value="{{row.ename}}" type="checkbox" id="chest_{{row.ename}}" name="{{row.id}}" />{{ row.ename|replace('_', ' ') }}</label>
+        <br>
+    {% endfor %}
+  </div>
+</div>
+<input type="submit" value="Submit" id="submit_training">
+</form>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, username TEXT NOT NULL, hash TEXT NOT NULL, coach_gymgoer TEXT NOT NULL, cash NUMERIC NOT NULL DEFAULT 20.00);
+CREATE UNIQUE INDEX username ON users (username);
+
+CREATE TABLE exercise_list (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ename TEXT NOT NULL);
+CREATE UNIQUE INDEX ename ON users (ename);
+
+
+donation
+    <div class="input-box">
+        <input type="number" name="donation" placeholder="Donation" min="1" max="20">
+    </div>
+
+
+if weekdays == "Monday":
+            Monday = selected_options
+            session['Monday'] = Monday
+        elif weekdays == "Tuesday":
+            Tuesday = selected_options
+            session['Tuesday'] = Tuesday
+        elif weekdays == "Wednesday":
+            Wednesday = selected_options
+            session['Wednesday'] = Wednesday
+        elif weekdays == "Thursday":
+            Thursday = selected_options
+            session['Thursday'] = Thursday
+        elif weekdays == "Friday":
+            Friday = selected_options
+            session['Friday'] = Friday
+        elif weekdays == "Saturday":
+            Saturday = selected_options
+            session['Saturday'] = Saturday
+        elif weekdays == "Sunday":
+            Sunday = selected_options
+            session['Sunday'] = Sunday
+        elif not weekdays:
+            return apology("must select a day", 403)
+        return redirect("/planresult")

@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<body>
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <div class="text">
+          <span class="text-1">Fitness is not only a destination,<br>it's an enjoyable journey</span>
+          <span class="text-2">we're here to help you create a personalized weekly plan on your phone.</span>
+        </div>
+      </div>
+      <div class="back">
+        <img class="backImg" src="/static/register.form.background.jpg">
+        <div class="text">
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Login</div>
+          <form action="/login" method="post">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username_login" name="username_login" placeholder="Username" type="text" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input class="form-control mx-auto w-auto" id="password_login" name="password_login" placeholder="Password" type="password" required>
+              </div>
+              <div class="button input-box">
+                <input type="submit" value="Sumbit">
+              </div>
+              <div class="text sign-up-text">Don't have an account?<br> <label for="flip">Sign up now</label></div>
+            </div>
+        </form>
+      </div>
+
+        <div class="signup-form">
+          <div class="title">Sign up</div>
+        <form action="/signup" method="post">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input  type="text" autocomplete="off" autofocus name="username" placeholder="Username" type="text" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input autocomplete="off" autofocus name="password" placeholder="Password" type="password" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input autocomplete="off" autofocus name="confirmation" placeholder="Confirm password" type="password" required>
+              </div>
+              <div class="custom-select">
+                <select name="coach_gymgoer">
+                  <option disabled selected>coach/gym-goer</option>
+                  <option>Coach</option>
+                  <option>gym-goer</option>
+                </select>
+              </div>
+              <div class="button input-box">
+                <input type="submit" value="Sumbit" style="position: absolte; left: -10px; top:10px">
+              </div>
+              <div class="text sign-up-text">Already have an account?<br> <label for="flip">Login now</label></div>
+            </div>
+      </form>
+    </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>
+
+{% endblock %}

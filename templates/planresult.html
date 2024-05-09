@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    plan result
+{% endblock %}
+
+{% block main %}
+
+<style>
+  #plan_table {
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 540px;
+    position: absolute;
+    top: 180px;
+    left: 20px;
+    table-layout: fixed;
+    word-wrap: break-word;
+    border-collapse: collapse;
+
+  }
+  td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  .weekdays {
+    font-size: 1.5rem;
+  }
+
+  h1, h2 {
+      position: absolute;
+      text-align: center;
+      color:white;
+    }
+    #h1top {
+        font-size: 2.5em;
+        top: 10px;
+        left: 500px
+    }
+    #h2top {
+        font-size: 1.8em;
+        top: 110px;
+        left: 250px
+    }
+</style>
+
+<h1 id="h1top">Bodybuilding Training Plan</h1>
+
+<table id="plan_table">
+<tbody>
+{% for day, enames in ename_dict.items() %}
+{% if day == "Monday" %}
+    <tr>
+      <td id="Monday" class="weekdays">Monday</td>
+      {% for ename in enames %}
+          <td id="{{ ename }}">{{ ename|replace('_', ' ') }}</td>
+      {% endfor %}
+    </tr>
+
+{% elif day == "Tuesday" %}
+    <tr>
+      <td id="Tuesday" class="weekdays">Tuesday</td>
+      {% for ename in enames %}
+          <td id="{{ ename }}">{{ ename|replace('_', ' ') }}</td>
+      {% endfor %}
+    </tr>
+
+{% elif day == "Wednesday" %}
+    <tr>
+      <td id="Wednesday" class="weekdays">Wednesday</td>
+      {% for ename in enames %}
+          <td id="{{ ename }}">{{ ename|replace('_', ' ') }}</td>
+      {% endfor %}
+    </tr>
+
+{% elif day == "Thursday" %}
+    <tr>
+      <td id="Thursday" class="weekdays">Thursday</td>
+      {% for ename in enames %}
+          <td id="{{ ename }}">{{ ename|replace('_', ' ') }}</td>
+      {% endfor %}
+    </tr>
+
+
+{% elif day == "Friday" %}
+    <tr>
+      <td id="Friday" class="weekdays">Friday</td>
+      {% for ename in enames %}
+          <td id="{{ ename }}">{{ ename|replace('_', ' ') }}</td>
+      {% endfor %}
+    </tr>
+
+{% elif day == "Saturday" %}
+    <tr>
+      <td id="Saturday" class="weekdays">Saturday</td>
+      {% for ename in enames %}
+          <td id="{{ ename }}">{{ ename|replace('_', ' ') }}</td>
+      {% endfor %}
+    </tr>
+
+{% elif day == "Sunday" %}
+    <tr>
+      <td id="Sunday" class="weekdays">Sunday</td>
+      {% for ename in enames %}
+          <td id="{{ ename }}">{{ ename|replace('_', ' ') }}</td>
+      {% endfor %}
+    </tr>
+{% endif %}
+{% endfor %}
+</tbody>
+</table>
+
+<a id="addbtn" class="links" href="/addplan">Add exercises</a>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Workout assistant
+{% endblock %}
+
+{% block main %}
+<style>
+    h1, h2 {
+      position: absolute;
+      top: -270px;
+      text-align: center;
+      color:white;
+    }
+    #h1top {
+        font-size: 3em;
+        top: 5px;
+        left: 550px
+    }
+    #h2top {
+        font-size: 1.8em;
+        top: 110px;
+        left: 250px
+    }
+    select {
+        display: inline-block;
+        margin-right: 50px;
+    }
+
+  </style>
+
+
+  <h1 id="h1top">Workout assistant</h1>
+  <h2 id="h2top">See available exercises with their images by clicking on each bodypart</h2>
+  <div>
+    <a href="/chest" class="bodyp" role="button">Chest</a>
+    <a href="/bicep" class="bodyp" role="button">Bicep</a>
+    <a href="/tricep" class="bodyp" role="button">Tricep</a>
+    <a href="/back" class="bodyp" role="button">Back</a>
+    <a href="/leg" class="bodyp" role="button">Leg</a>
+    <a href="/abs" class="bodyp" role="button">ABS</a>
+  </div>
+
+
+  <a href="/plan" class="bodyp" role="button" id="plan_link_btn">click here to make your own weekly plan!</a>
+
+
+
+{% endblock %}

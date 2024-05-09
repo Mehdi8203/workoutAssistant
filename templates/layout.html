@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/styles.css"></link>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/static/script.js"></script>
+    <!-- Coding by CodingNepal | www.codingnepalweb.com-->
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        <title>Workout assistant: {% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+
+        <nav class="bg-light border navbar navbar-expand-md navbar-light">
+            <div class="container-fluid">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                    {% if session["user_id"] %}
+                      <div>
+                          <a id="logincss" class="links" href="/login">Log In or Sign up</a>
+                          <a id="homepagecss" class="links" href="/">Home</a>
+                          <a id="logoutcss" class="links" href="/logout">Log Out</a>
+                          <a id="changepass" class="links" href="/change_password">Change password</a>
+                      </div>
+                    {% else %}
+                      <div>
+                        <ul>
+                          <a id="logincss" class="links" href="/login">Log In or Sign up</a>
+                        </ul>
+                      </div>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </nav>
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary mb-0 text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <main class="container-fluid py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+
+    </body>
+
+</html>
